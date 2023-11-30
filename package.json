@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "npx hardhat test",
-    "deploy:network": "npx hardhat deploy --network"
+    "coverage": "npx hardhat coverage"
   },
   "author": "ericady",
   "devDependencies": {

@@ -1,5 +1,7 @@
 # tsunami-test
 
+## Test Requirements
+
 Write a “Vault” solidity contract
 
 Requirements:
@@ -17,9 +19,34 @@ Requirements:
 
 The test will be evaluated on
 
-a) code cleanliness and clarity
-b) its readme
-c) if it runs as expected with tests
-d) The ease of a potential user interacting with the contract
-e) if it is tested properly
-f) if every requirement is met
+    a) code cleanliness and clarity
+    b) its readme
+    c) if it runs as expected with tests
+    d) The ease of a potential user interacting with the contract
+    e) if it is tested properly
+    f) if every requirement is met
+
+## Accomplishment
+
+- Wrote `Vault.sol` smart contract with all requirements implemented
+- Wrote unit tests with 100% coverage rate.
+
+## Run tests
+
+- Install dependencies with `yarn install` command.
+- Open terminal, go to the root path, then run `yarn test`.
+
+## Code coverage
+
+- Open terminal, go to the root path, then run `yarn coverage`.
+- To get more details after you see coverage reports on terminal, open `coverage/index.html` on your browser.
+
+Current coverage rate.
+
+| File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Lines |
+| --------------- | ------- | -------- | ------- | ------- | --------------- |
+| contracts/      | 100     | 100      | 100     | 100     |                 |
+| Vault.sol       | 100     | 100      | 100     | 100     |                 |
+| contracts/mock/ | 100     | 100      | 100     | 100     |                 |
+| MockToken.sol   | 100     | 100      | 100     | 100     |                 |
+| All files       | 100     | 100      | 100     | 100     |                 |
