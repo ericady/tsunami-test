@@ -2,6 +2,7 @@ import "@nomicfoundation/hardhat-ethers";
 import "@nomicfoundation/hardhat-verify";
 import "@nomicfoundation/hardhat-toolbox";
 import "@nomicfoundation/hardhat-network-helpers";
+import "@openzeppelin/hardhat-upgrades";
 import "hardhat-deploy";
 import "hardhat-abi-exporter";
 import "hardhat-contract-sizer";

@@ -11,12 +11,15 @@ import "@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
  * @author ericady
  * @notice This vault is static vault which is just holding tokens on it.
  */
-contract Vault is OwnableUpgradeable, PausableUpgradeable {
+contract Vault1 is OwnableUpgradeable, PausableUpgradeable {
     using SafeERC20 for IERC20;
 
     mapping(address => bool) public whitelistedTokens;
     /// @notice Store user's balance, user => token => balance
     mapping(address => mapping(address => uint)) public balanceOf;
+
+    /// Keep same storage layout
+    string public version;
 
     /// Events
     event UpdatedTokenWhitelist(address indexed token, bool whitelist);

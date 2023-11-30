@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { ethers } from "hardhat";
+import { ethers, upgrades } from "hardhat";
 import { HardhatEthersSigner } from "@nomicfoundation/hardhat-ethers/signers";
 import { MockToken, Vault } from "../typechain";
 import { parseUnits } from "ethers";
@@ -21,7 +21,7 @@ describe("Vault", () => {
 
   beforeEach(async () => {
     const vaultFactory = await ethers.getContractFactory("Vault");
-    vault = await vaultFactory.deploy();
+    vault = await upgrades.deployProxy(vaultFactory);
   });
 
   describe("Owner Privileges", () => {
@@ -165,6 +165,23 @@ describe("Vault", () => {
       await expect(vault.connect(alice).withdraw(token, depositAmount))
         .to.be.revertedWithCustomError(vault, "InsufficientBalance")
         .withArgs(alice.address, token.target);
+    });
+  });
+
+  describe("Upgradeable", () => {
+    it("should keep prev storage after upgrades", async () => {
+      const depositAmount = parseUnits("10");
+      await vault.whitelistToken(token, true);
+      await token.connect(alice).mint(parseUnits("1000"));
+      await token.connect(alice).approve(vault, depositAmount);
+      await vault.connect(alice).deposit(token, depositAmount);
+
+      expect(await vault.balanceOf(alice, token)).to.be.equal(depositAmount);
+
+      const vault1Factory = await ethers.getContractFactory("Vault1");
+      await upgrades.upgradeProxy(vault, vault1Factory);
+
+      expect(await vault.balanceOf(alice, token)).to.be.equal(depositAmount);
     });
   });
 });
